@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Add Product{% endblock %}
+{% block content %}
+{% include "dashboard/navbar.html" %}
+<section class="bg-gray-100 min-h-screen py-6">
+    <div class="max-w-lg mx-auto bg-white border-t-4 border-violet-600 rounded-md shadow-sm p-3">
+        <h2 class="text-lg text-center font-semibold text-gray-800 mb-4 border-b pb-2">Add Product</h2>
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            <!-- Product Name -->
+            <div>
+                <label class="block text-xs text-gray-600 mb-1">Product Name</label>
+                {{ form.product_name }}
+            </div>
+            <!-- Price + Qty -->
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs text-gray-600 mb-1">Price</label>
+                    {{ form.product_price }}
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-600 mb-1">Qty</label>
+                    {{ form.product_qty }}
+                </div>
+            </div>
+            <!-- Brand -->
+            <div>
+                <label class="block text-xs text-gray-600 mb-1">Brand</label>
+                {{ form.product_brand }}
+            </div>
+            <!-- Description -->
+            <div>
+                <label class="block text-xs text-gray-600 mb-1">Description</label>
+                {{ form.product_describ }}
+            </div>
+            <!-- Image -->
+            <div>
+                <label class="block text-xs text-gray-600 mb-1">Image</label>
+                <div class="border border-gray-300 rounded-md px-2 py-2 bg-gray-50">
+                    {{ form.product_image }}
+                </div>
+            </div>
+            <!-- Button -->
+            <div class="flex justify-end pt-2">
+                <button type="submit"
+                    class="block mx-auto bg-violet-400 hover:bg-violet-500 text-white text-sm px-4 py-1.5 rounded">
+                    Add Product
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

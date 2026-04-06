@@ -2,9 +2,9 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% include "dashboard/navbar.html" %}
-<section>
+<section class="">
     <div>
-        
+        <a href="{% url 'dashboard:addproduct' %}">Add Product</a>
     </div>
 </section>
 {% endblock %}

@@ -11,4 +11,5 @@ def add_product(request):
     if form.is_valid():
         form.save()
         return redirect('dashboard:home')
-    return render(request, 'dashboard/')
+    return render(request, 'dashboard/productForm.html', {'form':form})
+
