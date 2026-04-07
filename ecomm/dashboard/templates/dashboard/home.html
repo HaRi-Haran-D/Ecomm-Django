@@ -2,9 +2,35 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% include "dashboard/navbar.html" %}
-<section class="">
-    <div>
-        <a href="{% url 'dashboard:addproduct' %}">Add Product</a>
+
+<section class="bg-gray-100 min-h-screen py-6 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+
+            {% for item in list %}
+                <div class="bg-white rounded-md shadow-2xl p-3 hover:shadow-md transition">
+                    <a href="{% url 'dashboard:detailView' item.id %}">
+                        <!-- Image -->
+                        <div class="h-60 flex items-center justify-center bg-gray-50 rounded">
+                            <img src="{{ item.product_image.url }}" class="max-h-full object-contain" alt="">
+                        </div>
+                        <!-- Content -->
+                        <div class="mt-3 space-y-1">
+                            <!-- Name -->
+                            <h2 class="text-sm font-medium text-gray-800 line-clamp-2">{{ item.product_name }}</h2>
+                            <!-- Brand -->
+                            <p class="text-xs text-gray-500">{{ item.product_brand }}</p>
+                            <!-- Price -->
+                            <p class="text-sm font-semibold text-gray-900">₹{{ item.product_price }}</p>
+                            <div class="">
+                                <a href="" class="bg-violet-400 hover:bg-violet-500 text-white text-sm px-4 py-1.5 rounded">Add to Cart</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
     </div>
 </section>
 {% endblock %}

@@ -14,3 +14,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+class ProductImage(models.Model):
+    image = models.OneToOneField(Product, on_delete=models.CASCADE)
