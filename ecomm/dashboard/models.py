@@ -7,7 +7,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     product_price = models.IntegerField()
     product_describ = models.TextField()
-    product_image = models.ImageField(default='', upload_to='products')
+    product_image = models.ImageField(default='default.png', upload_to='products')
     product_brand = models.CharField(max_length=100)
     product_qty = models.IntegerField()
     created_date = models.DateField(auto_now_add=True)
@@ -15,5 +15,5 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
-class ProductImage(models.Model):
-    image = models.OneToOneField(Product, on_delete=models.CASCADE)
+# class ProductImage(models.Model):
+#     image = models.OneToManyField(Product, on_delete=models.CASCADE)

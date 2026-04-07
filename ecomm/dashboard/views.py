@@ -21,3 +21,19 @@ def add_product(request):
 def detailed_product(request, id):
     item = Product.objects.get(id=id)
     return render(request, 'dashboard/detailView.html', {'item':item})
+
+
+def update_product(request, id):
+    item = Product.objects.get(id=id)
+    form = ProductForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard:home')
+    return render(request, 'dashboard/updateForm.html', {'form':form})
+
+def delete_product(request, id):
+    item = get_object_or_404(Product, id=id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('dashboard:home')
+    return redirect('dashboard:detailView')
