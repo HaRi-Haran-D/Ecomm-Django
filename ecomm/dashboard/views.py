@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
 
@@ -14,7 +15,8 @@ def add_product(request):
         product = form.save(commit=False)
         product.user = request.user
         product.save()
-        return redirect('dashboard:home')
+        # messages.success(request, "")
+        return redirect('user_dashboard:home')
     return render(request, 'dashboard/productForm.html', {'form':form})
 
 
@@ -28,12 +30,13 @@ def update_product(request, id):
     form = ProductForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
-        return redirect('dashboard:home')
+        return redirect('user_dashboard:home')
     return render(request, 'dashboard/updateForm.html', {'form':form})
+
 
 def delete_product(request, id):
     item = get_object_or_404(Product, id=id)
     if request.method == 'POST':
         item.delete()
-        return redirect('dashboard:home')
+        return redirect('user_dashboard:home')
     return redirect('dashboard:detailView')

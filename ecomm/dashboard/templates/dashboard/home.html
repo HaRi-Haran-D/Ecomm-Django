@@ -7,7 +7,7 @@
 
             {% for item in list %}
                 <div class="bg-white rounded-md shadow-lg p-3 hover:shadow-md transition">
-                    <a href="{% url 'dashboard:detailView' item.id %}">
+                    <a href="{% url 'user_dashboard:detailView' item.id %}">
                         <!-- Image -->
                         <div class="h-60 flex items-center justify-center bg-gray-50 rounded">
                             <img src="{{ item.product_image.url }}" class="max-h-full object-contain" alt="">
