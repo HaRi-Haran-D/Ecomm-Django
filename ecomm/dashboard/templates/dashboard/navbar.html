@@ -12,6 +12,7 @@
 							<li>
 								<a href="{% url 'user_dashboard:home' %}" class="text-heading hover:underline" aria-current="page">Home</a>
 							</li>
+							{% if user.is_authenticated %}
 							<li>
 								<a href="{% url 'user_dashboard:addproduct' %}" class="text-heading hover:underline" aria-current="page">Add</a>
 							</li>
@@ -19,65 +20,51 @@
 								<a href="#" class="text-heading hover:underline"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
 							</li>
 							<li>
-								<button 
-									data-modal-target="popup-modal" 
-									data-modal-toggle="popup-modal"
-									class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5">
-									Logout
-								</button>
-								<div id="popup-modal" tabindex="-1" 
-								class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-									<div class="relative w-full max-w-md p-4">
-										<div class="relative bg-white rounded-lg shadow-lg p-6 text-center">
-
-											<!-- Close Button -->
-											<button type="button" 
-												class="absolute top-3 right-3 text-gray-400 hover:text-gray-700"
-												data-modal-hide="popup-modal">
-												✕
-											</button>
+								<a href="#" class="text-heading hover:underline"><i class="fa-solid fa-user"></i> {{ user.username }}</a>
+							</li>
+							<li>
+								<button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-heading hover:underline">Logout</button>
+								<div id="popup-modal" class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm">
+										<div class="flex items-center justify-center min-h-screen">
+											<div class="relative z-[10000] bg-white rounded-lg shadow-lg p-6 text-center w-full max-w-md">
+												
+											<!-- Close -->
+											<button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700">✕</button>
 
 											<!-- Icon -->
 											<div class="flex justify-center mb-4">
-												<div class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 text-xl">
+												<div class="w-12 h-12 flex items-center justify-center rounded-full border text-gray-500">
 													!
 												</div>
 											</div>
 
 											<!-- Text -->
 											<h3 class="mb-6 text-gray-700 text-lg font-medium">
-												Are you sure you want to log out? <br>
+												Are you sure you want to log out?
+												<br>
 												<span class="text-sm text-gray-500">
-													You will need to sign in again to access your account.
+													You will need to sign in again.
 												</span>
 											</h3>
 
 											<!-- Buttons -->
 											<div class="flex justify-center gap-4">
 
-												<!-- ✅ Django Secure Logout -->
-												<form action="{% url 'users:logout' %}" method="POST">
-													{% csrf_token %}
-													<button type="submit"
-														class="px-5 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300">
-														Yes, log me out
-													</button>
-												</form>
+												<!-- Logout -->
+												<button onclick="logoutUser()" class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Yes, log me out</button>
 
 												<!-- Cancel -->
-												<button data-modal-hide="popup-modal"
-													class="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
-													Cancel
-												</button>
-
+												<button onclick="closeModal()" class="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">Cancel</button>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
+							{% else %}
 							<li>
 								<a href="{% url 'users:login' %}" class="text-heading hover:underline">Login</a>
 							</li>
+							{% endif %}
 						</ul>
 					</div>
 				</div>

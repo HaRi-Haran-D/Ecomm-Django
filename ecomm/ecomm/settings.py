@@ -121,3 +121,7 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/products/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'user_dashboard:home'

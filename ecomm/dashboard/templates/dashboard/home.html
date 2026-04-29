@@ -10,7 +10,7 @@
                     <a href="{% url 'user_dashboard:detailView' item.id %}">
                         <!-- Image -->
                         <div class="h-60 flex items-center justify-center bg-gray-50 rounded">
-                            <img src="{{ item.product_image.url }}" class="max-h-full object-contain" alt="">
+                            <img src="{{ item.product_image.url }}" class="max-h-full object-cover hover:scale-110 transition duration-300" alt="">
                         </div>
                         <!-- Content -->
                         <div class="mt-3 space-y-1">

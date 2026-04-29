@@ -27,6 +27,17 @@
         }
     });
 
+    function openModal() {
+        document.getElementById("popup-modal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+        document.getElementById("popup-modal").classList.add("hidden");
+    }
+
+    function logoutUser() {
+        window.location.href = "{% url 'users:logout' %}";
+    }
 </script>
 <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </html>
