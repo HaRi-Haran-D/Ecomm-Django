@@ -10,7 +10,7 @@ class Product(models.Model):
     product_image = models.ImageField(default='default.png', upload_to='products')
     product_brand = models.CharField(max_length=100)
     product_qty = models.IntegerField()
-    created_date = models.DateField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.product_name

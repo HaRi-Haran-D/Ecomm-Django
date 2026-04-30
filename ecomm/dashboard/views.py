@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
@@ -6,7 +7,10 @@ from .forms import ProductForm
 # Create your views here.
 def home(request):
     list = Product.objects.all()
-    return render(request, 'dashboard/home.html', {'list':list})
+    paginator = Paginator(list,2)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'dashboard/home.html', {'page_obj':page_obj})
 
 
 def add_product(request):
