@@ -9,4 +9,7 @@ urlpatterns = [
     path('updateproduct/<int:id>/', views.update_product, name='updateProduct'),
     path('deleteproduct/<int:id>/', views.delete_product, name='deleteProduct'),
 
+    #API URL
+    path('productapi/', views.product_api, name='product_api'),
+    path('productapi/<int:pk>/', views.product_api_get, name='product_api_get'),
 ]
